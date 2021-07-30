@@ -1,0 +1,24 @@
+@import '../../App.scss';
+
+.List{
+    padding: 40px;
+    @include flex(nul,null,center);
+    .Container{
+        .HeaderList{
+            @include flex(null,center,space-between);
+            padding-bottom: 20px;
+            border-bottom: 1px solid $lightGrey;
+            color: $deepGrey;
+            .HeaderListTitle{
+                @include flex(null,center,null);
+            }
+            img{
+                width: 30px;
+                margin-right: 10px;
+            }
+        }
+        .BodyList{
+            @include flex(column,center,null);
+        }
+    }
+}

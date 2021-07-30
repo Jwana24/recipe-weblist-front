@@ -1,0 +1,21 @@
+@import '../../App.scss';
+
+.NewRecipe{
+    @include flex(null,null,center);
+    padding: 40px;
+    .Container{
+        .HeaderRecipe{
+            @include flex(null,center,space-between);
+            padding-bottom: 20px;
+            border-bottom: 1px solid $lightGrey;
+            color: $deepGrey;
+            .HeaderRecipeTitle{
+                @include flex(null,center,null);
+            }
+            img{
+                width: 30px;
+                margin-right: 10px;
+            }
+        }
+    }
+}

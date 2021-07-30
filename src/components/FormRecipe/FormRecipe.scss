@@ -1,0 +1,47 @@
+@import '../../App.scss';
+
+.FormRecipe{
+    padding: 40px;
+    form{
+        @include flex(null,null,center);
+        .ContainerForm{
+            width: 100%;
+            padding: 50px;
+            box-shadow: 0 6px 18px 0 rgba(56, 64, 86, 0.2);
+            @include radius(3px);
+            .FormInputs{
+                @include flex(column,null,null);
+                &:not(:last-of-type){
+                    margin-bottom: 15px;
+                }
+                label{
+                    padding-bottom: 5px;
+                    text-transform: uppercase;
+                    color: $lightOrange;
+                    font-size: 13px;
+                    font-weight: bold;
+                }
+                input, textarea{
+                    padding: 10px 15px;
+                    border: 2px solid $lightGrey;
+                    outline: none;
+                    @include radius(3px);
+                }
+            }
+            .GroupInputs{
+                @include flex(null,null,null);
+                .FormInputs{
+                    &:not(:last-of-type){
+                        margin-right: 10px;
+                    }
+                    &.InputsTime{
+                        width: 20%;
+                    }
+                    &.InputsTitle{
+                        width: 80%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@import '../../../App.scss';
+
+.Thumbnail{
+    @include flex(null, null, null);
+    width: 820px;
+    margin: 40px;
+    box-shadow: 0 6px 18px 0 rgba(56, 64, 86, 0.2);
+    @include radius(3px);
+    .ThumbnailImage{
+        max-width: 300px;
+        min-width: 300px;
+        max-height: 300px;
+        min-height: 300px;
+        @include radius(3px);
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+    }
+    .ThumbnailText{
+        padding: 40px;
+        h2{
+            padding-bottom: 10px;
+            &::first-letter{
+                text-transform: capitalize;
+            }
+        }
+        button{
+            margin-top: 20px;
+        }
+    }
+}

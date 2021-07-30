@@ -1,0 +1,53 @@
+@import '../../App.scss';
+
+.Header{
+    @include flex(null,null,center);
+    padding: 10px 20px;
+    background-color: $lightOrange;
+    .Container{
+        @include flex(null,center,space-between);
+        .ContainerLogo{
+            @include flex(null,center,null);
+            width: 60%;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: $deepGrey;
+        }
+        .ContainerLinks{
+            @include flex(null,null,flex-end);
+            width: 40%;
+            a{
+                position: relative;
+                padding-bottom: 7px;
+                color: $deepGrey;
+                font-size: 16px;
+                font-weight: 900;
+                letter-spacing: 1px;
+                &:not(:last-of-type){
+                    margin-right: 40px;
+                }
+                &::after{
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    content: '';
+                    width: 0;
+                    height: 2px;
+                    display: block;
+                    background: $deepGrey;
+                    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    -moz-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    -ms-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    -o-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                }
+                &:hover{
+                    &:after{
+                        width: 100%; 
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+}

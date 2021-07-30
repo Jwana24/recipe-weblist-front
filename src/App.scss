@@ -1,0 +1,20 @@
+// --- VARIABLES --- //
+$lightOrange: #f3a683;
+$deepGrey: #303952;
+$lightGrey: #f1f2f6;
+
+// --- MIXINS --- //
+@mixin flex($direction, $align, $justify) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin radius($deg) {
+    border-radius: $deg;
+    -webkit-border-radius: $deg;
+    -moz-border-radius: $deg;
+    -ms-border-radius: $deg;
+    -o-border-radius: $deg;
+}
