@@ -1,67 +1,68 @@
 // modules
-import React, { useState } from 'react';
-import Axios from 'axios';
+import React from 'react';
+import { Controller } from 'react-hook-form';
 
 // components
 import Button from '../Button/Button';
+import Editor from '../MyEditor/MyEditor';
 
 // scss
 import './FormRecipe.scss';
 
-const FormRecipe = () => {
-    const [formRecipe, setFormRecipe] = useState({
-        image: '',
-        name: '',
-        time: '',
-        text: ''
-    });
-
-    const handleChangeInputs = event => {
-        const { name, value } = event.target;
-        setFormRecipe({ ...formRecipe, [name]: value });
-    };
-
-    const handlePostForm = (event) => {
-        event.preventDefault();
-        Axios.post(`${process.env.REACT_APP_API}/recipes`, {
-            image: formRecipe.image,
-            name: formRecipe.name,
-            time: formRecipe.time,
-            text: formRecipe.text
-        })
-        .then(res => res.data)
-        .then(data => setFormRecipe(data))
-    }
-
-    console.log(formRecipe);
-
+const FormRecipe = ({ handleSubmit, onSubmit, register, textButton, control }) => {
     return(
         <div className="FormRecipe">
-            <form onSubmit={handlePostForm}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="ContainerForm">
                     <div className="FormInputs">
                         <label htmlFor="image">Image</label>
-                        <input onChange={handleChangeInputs} type="text" id="image" name="image" value={formRecipe.image || ''} />
+                        <input {...register("image")} />
                     </div>
 
                     <div className="GroupInputs">
                         <div className="FormInputs InputsTime">
                             <label htmlFor="time">Temps de préparation</label>
-                            <input onChange={handleChangeInputs} type="time" id="time" name="time" value={formRecipe.time || ''} />
+                            <input type="time" {...register("time")} />
                         </div>
                         <div className="FormInputs InputsTitle">
                             <label htmlFor="title">Titre</label>
-                            <input onChange={handleChangeInputs} type="text" id="name" name="name" value={formRecipe.name || ''} />
+                            <input {...register("name")} />
                         </div>
                     </div>
 
+                    {/* <div className="FormInputs">
+                        <label htmlFor="text">Texte</label>
+                        <textarea cols="30" rows="10" {...register("text")}></textarea>
+                    </div> */}
+
                     <div className="FormInputs">
                         <label htmlFor="text">Texte</label>
-                        <textarea onChange={handleChangeInputs} name="text" id="text" cols="30" rows="10" value={formRecipe.text || ''}></textarea>
+                        {/* <Editor {...register("text")} /> */}
+                        <Controller
+                            render={({ field: { value, onChange, ref } }) => {
+                                return (
+                                  <>
+                                    <Editor
+                                      ref={ref}
+                                      editorState={value}
+                                      onChange={onChange}
+                                    />
+                                  </>
+                                );
+                              }}
+                            name="text"
+                            control={control}
+                        />
+                    </div>
+
+                    <div className="FormInputs">
+                        <label htmlFor="text">Auteur</label>
+                        <input {...register("author")} />
                     </div>
 
                     <Button
-                        text='Ajouter'
+                        text={textButton}
+                        type='submit'
                     />
                 </div>
 

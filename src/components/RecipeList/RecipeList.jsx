@@ -1,6 +1,6 @@
 // modules
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 // components
@@ -13,7 +13,7 @@ import './RecipeList.scss';
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState([]);
-    const history = useHistory();
+    const history = useNavigate();
 
     useEffect(() => {
         Axios.get(`${process.env.REACT_APP_API}/recipes`)

@@ -1,18 +1,85 @@
 @import '../../../App.scss';
 
-.Thumbnail{
+.Thumbnail {
     @include flex(null, null, null);
-    width: 820px;
+    position: relative;
+    width: 100%;
     margin: 40px;
     box-shadow: 0 6px 18px 0 rgba(56, 64, 86, 0.2);
     @include radius(3px);
-    .ThumbnailImage{
+    transition: all 0.5s;
+    &:hover {
+        .Overlay {
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            @include radius(3px);
+            background-color: rgba(0,0,0,0.5);
+        }
+        .IconsOverlay {
+            @include flex(null, center, center);
+        }
+        .IconVisualize {
+            @include flex(column, center, center);
+        }
+    }
+    .IconsOverlay {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        .IconVisualize {
+            cursor: pointer;
+            > div {
+                border-color: $lightBlue;
+            }
+            > p {
+                color: $lightBlue;
+            }
+        }
+        .IconDelete {
+            cursor: pointer;
+            > div {
+                border-color: $lightRed;
+            }
+            > p {
+                color: $lightRed;
+            }
+        }
+    }
+    .IconVisualize,
+    .IconDelete {
+        @include flex(column, center, center);
+        margin: 15px;
+        > div {
+            @include flex(null, center, center);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid black;
+            img {
+                width: 30px;
+            }
+        }
+        > p {
+            padding-top: 10px;
+            text-decoration: underline;
+        }
+    }
+    .ThumbnailImage {
         max-width: 300px;
         min-width: 300px;
         max-height: 300px;
         min-height: 300px;
         @include radius(3px);
-        img{
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -20,15 +87,16 @@
             border-bottom-left-radius: 3px;
         }
     }
-    .ThumbnailText{
+    .ThumbnailText {
+        width: 100%;
         padding: 40px;
-        h2{
+        h2 {
             padding-bottom: 10px;
-            &::first-letter{
+            &::first-letter {
                 text-transform: capitalize;
             }
         }
-        button{
+        button {
             margin-top: 20px;
         }
     }
